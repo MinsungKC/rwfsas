@@ -12,5 +12,4 @@ missing data
 2km FRP blur
 
 
-Latest Model testing results
-Lucas Fire lower bound 2200 acres -> real 1099 acres 
+Over 100gb of training data!
