@@ -24,7 +24,7 @@ Perimeter-estimation code, copied from the fireintel working tree with its local
 
 ## Not included
 
-- Trained weights and models: YOLO `.pt`/`.onnx` files and `deployable_field_v3.pkl`. The live field runner needs the pickle, which `deploy_train_field.py` rebuilds from training data.
+- Training data (over 100 GB) and the other experiment models. The two runtime models are included: `fire-spread-lab/_frozen/deployable_field_v3.pkl` (perimeter field) and `fpm/best_seg_v3.pt` (smoke detector). `deploy_train_field.py` can rebuild the pickle from training data.
 - Training data and caches. DEM, fuel, GOES and VIIRS caches are fetched on demand.
 - Aircraft and airport lookup tables, which are downloaded on first use.
 

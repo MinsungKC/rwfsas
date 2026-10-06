@@ -8,3 +8,8 @@ _frozen/
 *.pt
 *.onnx
 *.log
+# runtime models needed to run the app out of the box
+!fire-spread-lab/_frozen/
+fire-spread-lab/_frozen/*
+!fire-spread-lab/_frozen/deployable_field_v3.pkl
+!fpm/best_seg_v3.pt
