@@ -16,7 +16,7 @@ Over 100gb of training data!
 
 ## Code in this repo
 
-Perimeter-estimation code, copied from the fireintel working tree with its local dependencies. Paths are relative to the repo, so it runs from any checkout.
+Perimeter-estimation code, copied from the fireintel working tree with its local dependencies. Paths are relative to the repo no changes are necessary.
 
 - `fpm/` — Bayesian burn-belief fusion (`fire_fusion.py`, `fusion_v3.py`), the interactive `perimeter_studio.py`, the local `console.py` app (port 8095), and the aircraft, camera and source-health inputs.
 - `fire-spread-lab/` — `models/learned_field_v3.py` (learned perimeter-field model) and `data/abi_fire_area.py` (GOES ABI fire-area reader).
