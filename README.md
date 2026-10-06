@@ -36,3 +36,7 @@ Perimeter-estimation code, copied from the fireintel working tree with its local
 - `synoptic_api_key` in `sim/config.json` — optional.
 
 Install with `pip install -r requirements.txt`.
+
+## Results
+
+Testing results are located in
