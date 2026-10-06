@@ -20,7 +20,7 @@ import numpy as np
 HERE=os.path.dirname(os.path.abspath(__file__)); sys.path.insert(0,HERE)
 sys.path.insert(0, os.path.normpath(os.path.join(os.path.dirname(os.path.abspath(__file__)), '../sim')))
 sys.path.insert(0, os.path.normpath(os.path.join(os.path.dirname(os.path.abspath(__file__)), '../fire-spread-lab')))
-sys.path.insert(0, os.path.normpath(os.path.join(os.path.dirname(os.path.abspath(__file__)), '../fire-spread-lab-claude/scripts')))
+sys.path.insert(0, os.path.normpath(os.path.join(os.path.dirname(os.path.abspath(__file__)), '../fire-spread-lab/scripts')))
 from shapely.geometry import shape, Point, Polygon, mapping
 from shapely.ops import unary_union, transform
 from scipy.ndimage import gaussian_filter, rotate as ndrot

@@ -18,7 +18,7 @@ import os, sys, math, json, argparse, urllib.request, urllib.parse
 from datetime import datetime, timezone, timedelta, date
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.normpath(os.path.join(os.path.dirname(os.path.abspath(__file__)), '../sim')))
-sys.path.insert(0, os.path.normpath(os.path.join(os.path.dirname(os.path.abspath(__file__)), '../fire-spread-lab-claude/scripts')))
+sys.path.insert(0, os.path.normpath(os.path.join(os.path.dirname(os.path.abspath(__file__)), '../fire-spread-lab/scripts')))
 
 WFIGS = ('https://services3.arcgis.com/T4QMspbfLg3qTGWY/arcgis/rest/services/'
          'WFIGS_Interagency_Perimeters_Current/FeatureServer/0/query')

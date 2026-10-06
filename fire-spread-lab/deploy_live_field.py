@@ -15,7 +15,7 @@ older cohort, so this is genuinely out-of-sample.
 import sys, os, json, math, pickle, importlib.util, urllib.request, urllib.parse
 from datetime import datetime, timezone
 
-FSL = os.path.normpath(os.path.join(os.path.dirname(os.path.abspath(__file__)), '../fire-spread-lab'))
+FSL = os.path.normpath(os.path.join(os.path.dirname(os.path.abspath(__file__)), '.'))
 sys.path.insert(0, FSL)                       # `data.abi_fire_area` (GOES reader) resolves here
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), 'scripts'))  # firms_fixed (VIIRS)
 HERE = os.path.dirname(os.path.abspath(__file__))

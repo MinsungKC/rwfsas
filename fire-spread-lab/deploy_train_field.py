@@ -9,9 +9,9 @@ feature_names, classifier_kwargs, n_steps, trained_utc, git_note}.
 import sys, os, json, pickle, importlib.util
 from datetime import datetime, timezone
 import numpy as np
-# model code lives in the NON-claude lab tree; import it by explicit path so the
-# local `models/` package here does not shadow it.
-_LF_PATH = os.path.normpath(os.path.join(os.path.dirname(os.path.abspath(__file__)), '../fire-spread-lab/models/learned_field_v3.py'))
+# model code lives alongside in models/; import it by explicit path so the
+# local `models/` package does not shadow it.
+_LF_PATH = os.path.normpath(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'models/learned_field_v3.py'))
 _spec = importlib.util.spec_from_file_location('learned_field_v3', _LF_PATH)
 LF = importlib.util.module_from_spec(_spec)
 sys.modules['learned_field_v3'] = LF   # register before exec so @dataclass can introspect (py3.14)

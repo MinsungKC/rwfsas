@@ -414,7 +414,7 @@ def obs_temporal_reachability(detections, *, seed_points, source_url,
 
 
 # =================== ADAPTERS (free sources) ===================
-sys.path.insert(0, os.path.normpath(os.path.join(os.path.dirname(os.path.abspath(__file__)), '../fire-spread-lab-claude/scripts')))
+sys.path.insert(0, os.path.normpath(os.path.join(os.path.dirname(os.path.abspath(__file__)), '../fire-spread-lab/scripts')))
 sys.path.insert(0, os.path.normpath(os.path.join(os.path.dirname(os.path.abspath(__file__)), '../fire-spread-lab')))
 
 def obs_viirs(bbox, days=3, sigma_m=375, weight=0.9):

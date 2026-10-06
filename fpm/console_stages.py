@@ -6,7 +6,7 @@ import os, sys, json, glob, math
 from functools import lru_cache
 
 FDV = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-FSLC = os.path.join(FDV, 'fire-spread-lab-claude')
+FSLC = os.path.join(FDV, 'fire-spread-lab')
 STEPS = os.path.join(FSLC, '_frozen', 'steps_viirs.jsonl')
 PRED_GLOB = os.path.join(FDV, 'fire-spread-lab', 'pipeline', 'runs', 'v3_causal_port', '*', 'predictions.jsonl')
 MODEL = 'learned_field_v3_causal_viirs_zero_dem_k1'

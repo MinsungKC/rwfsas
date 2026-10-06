@@ -22,7 +22,7 @@ from datetime import datetime, timezone
 HERE = os.path.dirname(os.path.abspath(__file__))
 FDV = os.path.dirname(HERE)
 FSL = os.path.join(FDV, 'fire-spread-lab')
-FSLC = os.path.join(FDV, 'fire-spread-lab-claude')
+FSLC = FSL
 for p in (HERE, FDV, FSL, FSLC, os.path.join(FSLC, 'scripts'), os.path.join(FDV, 'sim')):
     if p not in sys.path:
         sys.path.insert(0, p)
@@ -255,8 +255,8 @@ def inventory():
             'AlertCalifornia camera network (2249 cameras, live frames)',
         ],
         'key_files': {
-            'learned_field_v3 model': 'fire-spread-lab-claude/_frozen/deployable_field_v3.pkl',
-            'live runner': 'fire-spread-lab-claude/deploy_live_field.py',
+            'learned_field_v3 model': 'fire-spread-lab/_frozen/deployable_field_v3.pkl',
+            'live runner': 'fire-spread-lab/deploy_live_field.py',
             'fusion_v3': 'fpm/fusion_v3.py',
             'smoke detector': f'fpm/{SMOKE_WEIGHTS}',
             'perimeter studio': 'fpm/perimeter_studio.py',
