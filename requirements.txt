@@ -1,0 +1,14 @@
+numpy
+scipy
+shapely
+pyproj
+rasterio
+netCDF4
+requests
+matplotlib
+Pillow
+opencv-python
+folium
+scikit-learn
+lightgbm
+ultralytics

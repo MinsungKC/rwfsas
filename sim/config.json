@@ -1,0 +1,198 @@
+{
+  "paths": {
+    "cache_dir": "../sim_cache",
+    "output_dir": "../sim_output",
+    "models_dir": "../models",
+    "dem_dir": "../dem_tiles"
+  },
+  "sim_bbox_buffer_km": 50,
+  "grid_resolution_m": 250,
+  "timestep_minutes": 10,
+  "default_sim_hours": 24,
+  "danger_map_bbox": [
+    -124.4,
+    32.5,
+    -114.1,
+    42.1
+  ],
+  "danger_map_resolution_m": 1000,
+  "danger_weights": {
+    "vpd": 0.3,
+    "kbdi": 0.2,
+    "fuel_dryness": 0.2,
+    "wind": 0.15,
+    "slope": 0.1,
+    "human_ignition": 0.05
+  },
+  "danger_norms": {
+    "vpd_norm_kpa": 6.0,
+    "wind_norm_mph": 40.0,
+    "slope_norm_deg": 35.0,
+    "kbdi_annual_rain_in": 25.0
+  },
+  "influence_map_weights": {
+    "wind": 0.25,
+    "terrain": 0.15,
+    "fuel_load": 0.15,
+    "fuel_moisture": 0.15,
+    "vpd": 0.10,
+    "temperature": 0.05,
+    "humidity": 0.05,
+    "drought": 0.05,
+    "solar": 0.02,
+    "spotting": 0.02,
+    "canopy": 0.01,
+    "tpi": 0.00
+  },
+  "min_retrain_records": 50,
+  "min_nightly_new_records": 10,
+  "cache_ttl_minutes": {
+    "weather": 60,
+    "rtma": 60,
+    "hrrr": 180,
+    "satellite": 360,
+    "goes19": 10,
+    "firis": 10,
+    "perimeters": 30,
+    "alerts": 60,
+    "static": 0
+  },
+  "raws_radius_km": 75,
+  "synoptic_api_key": "YOUR_FREE_SYNOPTIC_KEY_HERE",
+  "spotting_enabled": true,
+  "spotting_min_wind_mph": 15,
+  "spotting_min_intensity_kw_m": 2000,
+  "spotting_max_per_step": 3,
+  "ml_correction_enabled": false,
+  "ml_correction_clip": [
+    0.2,
+    5.0
+  ],
+  "irwin_api_base": "https://irwin.doi.gov/arcgis/rest/services/PublicView/FeatureServer/0/query",
+  "inciweb_api_base": "https://inciweb.wildfire.gov/api/v2/incidents/",
+  "landfire": {
+    "lfps_base": "https://lfps.usgs.gov/api",
+    "layer": "LF2024_FBFM40",
+    "canopy_layer": "LF2024_CC",
+    "cbd_layer": "LF2024_CBD",
+    "email": "youngimyoo@yahoo.com",
+    "poll_timeout_min": 12,
+    "fallback_uniform_model": 122,
+    "comment": "LFPS job API (free, email only for notifications). Valid layers at /api/products. The old LandFireProductScalar GPServer is gone (now a Next.js SPA) - LFPS jobs are the working programmatic path. FBFM40 gives the fuel MODEL per cell; the per-model parameters ARE the official Scott & Burgan 2005 constants (there is no per-cell parameter raster). Canopy cover (CC) raster drives the wind adjustment factor."
+  },
+  "spread": {
+    "live_fuel_moisture": 0.9,
+    "max_sim_hours": 240,
+    "perimeter_simplify_m": 60,
+    "densify_m": 250,
+    "fm_blend_hourly": 0.7,
+    "gust_blend": 0.35,
+    "present_active_buffer_km_firms": 1.5,
+    "present_active_buffer_km_goes19": 4.0,
+    "present_perimeter_match_km_firms": 2.2,
+    "present_perimeter_match_km_goes19": 4.0,
+    "present_active_buffer_comment": "present-mode fires seeded from a real WFIGS perimeter only emit new-growth wavelets from boundary vertices near a matched hotspot — a big mapped perimeter (e.g. a 90k-acre complex) is usually mostly contained/mopping-up, with real activity on one flank; without this gate every vertex on the whole static perimeter gets full Rothermel physics regardless of current activity. FIRMS/VIIRS (~375m pixels, ~2 polar-orbit passes/day, so an individual detection can be up to ~24-30h old counting our own cache TTL) is deliberately given a SMALLER/tighter buffer — proximity to it must be close to count as confirming activity. GOES-19 NGFS (~2km pixels but geostationary ~5min revisit, so its 12h window is genuinely near-real-time) is given a LARGER/looser buffer, i.e. more weight/trust, on both this gate and the perimeter-inclusion check (present_perimeter_match_km_*) that decides whether a mapped perimeter has real current activity at all. Applied every step against the ORIGINAL hotspot locations (not re-derived per step) — a deliberate simplification for short/medium present-mode forecasts (hours, not weeks). Falls back to ungated if zero vertices pass either source (a genuinely active fire whose hotspots all land on interior unburned islands should not freeze solid).",
+    "goes19_activity_boost_radius_km": 2.0,
+    "goes19_activity_boost_max": 0.25,
+    "goes19_activity_boost_saturate_count": 15,
+    "goes19_activity_boost_comment": "Deliberately liminal/secondary signal — a soft +0-25% ROS multiplier scaled by how many GOES-19 NGFS detections (geostationary, ~5 min revisit) landed within radius_km of a boundary vertex in the last 12h, saturating at saturate_count. This is NOT a hard gate like the FIRMS present_active_buffer — it never zeroes spread, it only nudges relative intensity so parts of a fire with sustained near-continuous thermal activity push out a bit faster than parts with none. GOES pixels are ~2km (far coarser than FIRMS/VIIRS ~375m) so it's used for temporal density (how continuously hot), not spatial precision.",
+    "urban": {
+      "ignition_kw_m": 2500,
+      "ros_factor": 0.6,
+      "comment": "urban cells (LANDFIRE 91) are conditional fuel, not walls: at the wildland-urban edge the attacking fireline intensity must exceed ignition_kw_m for structures to ignite (ember/radiant threshold); once burning inside a developed area, structure-to-structure spread self-sustains at ros_factor x the urban pseudo-fuel rate. Water/snow/barren stay truly unburnable."
+    },
+    "gusts": {
+      "enabled": true,
+      "coherence": 0.75,
+      "gustiness": 0.35,
+      "squall_prob": 0.06,
+      "squall_boost": 1.25,
+      "dir_jitter_deg": 22,
+      "anabatic_max_mph": 5.0,
+      "comment": "stochastic gust model: a temporally-coherent OU factor g_t sways the whole fire's wind each step, per-vertex squalls (prob squall_prob) push individual flanks to squall_boost x gust with +-dir_jitter direction swings - the random finger runs real fires show. anabatic_max_mph adds the diurnal upslope thermal wind (10:00-18:00 solar, scaled by local slope) so fires make afternoon runs up canyons even under calm synoptic wind. Seeded per fire_id - reruns reproduce."
+    },
+    "containment": {
+      "enabled": true,
+      "full_growth_hours": 96,
+      "tau_hours": 140,
+      "floor": 0.5,
+      "comment": "Containment-gap proxy. The engine emits new-growth wavelets from EVERY perimeter vertex for the full derived duration, but real fires' actively-spreading perimeter fraction collapses after their main run as flanks are lined, mopped up, and hit natural/suppression barriers (Kincade real-plateaued ~77k ac by day 4 while the sim galloped to 487k; Woolsey plateaued ~100k at the Pacific/containment while the sim ran to 334k). Model: a per-step multiplier on new-growth head/back ROS = 1.0 for the first full_growth_hours, then decays exponentially with time-constant tau_hours toward floor. Deliberately gentle and late-onset (96h/140h) so it barely touches the first-4-day active run that under-predicting long/timber fires (Bootleg, Dixie, Caldor) are still building through, while reining in the multi-day runaway of wind-driven fires that really stopped. Applied to the Rothermel ROS BEFORE the ellipse, so head still leads back. Not a hard stop (floor keeps genuinely-long fires advancing). Set enabled=false to recover pure uncontained Huygens growth."
+    },
+    "comment": "fm_blend_hourly: weight on the hourly T/RH-derived dead fuel moisture (1-h fuels equilibrate in ~1h, so the diurnal signal must dominate the slow KBDI/RAWS grid - weighting the grid 0.6 was what capped every sim at double-digit acres). gust_blend: effective wind = ws + gust_blend*(gust-ws); coarse reanalysis 10m winds systematically undercut ridge/terrain winds that actually drive spread."
+  },
+  "pyrocb": {
+    "exponents": {
+      "heat": 0.4,
+      "instability": 0.3,
+      "moisture": 0.2,
+      "shear": 0.1
+    },
+    "heat_flux_norm_kw_m": 10000,
+    "cape_norm": 1000,
+    "lapse_rate_lo_c_km": 5.5,
+    "lapse_rate_hi_c_km": 8.5,
+    "shear_suppress_ms": 25,
+    "thresholds": {
+      "elevated": 0.2,
+      "high": 0.4,
+      "extreme": 0.65
+    },
+    "classifier_model": "pyrocb_classifier.pkl",
+    "comment": "risk = h^0.4 * i^0.3 * m^0.2 * s^0.1. instability = max(CAPE/(|CIN|+1)/cape_norm, 700-500hPa lapse rate scaled lo->hi) - ambient reanalysis CAPE is ~0 even on documented pyroCb days (the fire supplies the buoyancy), so the lapse rate term is what actually discriminates."
+  },
+  "model_paths": {
+    "spread_correction": "models/spread_correction.txt",
+    "danger_index": "models/danger_index.txt"
+  },
+  "ml_correction_comment": "disabled 2026-07-04: v1-v5 all suppressed sims to ~200 ac. Root flaw: labels are interval-AVERAGED front speeds from daily perimeter pairs (nights/lulls/containment included) but the engine applies the multiplier to INSTANTANEOUS per-step Rothermel ROS - the model just learns the duty cycle (~0.3x). Do not re-enable until labels compare observed advance to SIM-INTEGRATED advance over the same interval.",
+  "location_selection": {
+    "weights": {
+      "terrain": 0.30,
+      "fuel": 0.25,
+      "fire_activity": 0.25,
+      "raws": 0.10,
+      "completeness": 0.10
+    },
+    "disqualify_urban_frac": 0.60,
+    "disqualify_nonburn_frac": 0.40,
+    "disqualify_min_elev_m": 100,
+    "raws_disqualify_radius_km": 100,
+    "raws_score_radius_km": 50,
+    "terrain_std_norm_m": 400,
+    "fire_density_norm_per_km2_5yr": 0.002,
+    "reeval_max_age_days": 7,
+    "scoring_grid_resolution_m": 200
+  },
+  "simulator": {
+    "default_grid_resolution_m": 50,
+    "max_grid_cells": 640000,
+    "particles_per_cell": 8,
+    "timestep_seconds": 60,
+    "turbulence_octaves": 4,
+    "spotting_enabled": true,
+    "crown_fire_enabled": true,
+    "diurnal_enabled": true,
+    "fire_atmosphere_coupling": true,
+    "rekindle_wind_threshold_ms": 8.0,
+    "crown_ignition_intensity_threshold": 4000,
+    "crown_ros_multiplier": 3.0,
+    "crown_min_cbd": 3,
+    "downhill_decel_max": 0.8,
+    "downhill_decel_slope_deg": 22,
+    "comment_downhill": "Independent downhill-spread deceleration in the /simulator worker (separate from the Rothermel wind+slope ellipse): flames lean into the slope and preheat fuel upslope far more than downslope, so downhill spread is disproportionately slow and a ridge crest acts as a partial break (cells just past it are downhill-facing and throttle). downhill_decel_max = the fraction the per-direction ROS is cut when spreading STRAIGHT downhill on a slope at/above downhill_decel_slope_deg (0.8 -> straight-downhill ROS x0.2; scales by cos(bearing-aspect) and by min(slope/downhill_decel_slope_deg,1)). Lower the saturation degree to make moderate-slope ridges break harder. Worker-only; does NOT touch the historical Python engine (rothermel.py phi_s) that validation depends on.",
+    "gusts": {
+      "coherence": 0.75, "gustiness": 0.35, "squall_prob": 0.06,
+      "squall_boost": 1.25, "dir_jitter_deg": 22, "anabatic_max_mph": 5.0
+    },
+    "canvas_target_fps": 30,
+    "particle_pixel_threshold": 100000,
+    "webgl_particle_threshold": 500000
+  },
+  "training": {
+    "save_runs_enabled": true,
+    "counterfactual_variants": 10,
+    "online_learning_poll_minutes": 30,
+    "min_cells_for_retrain": 200,
+    "ground_truth_confidence_threshold": 0.3
+  }
+}

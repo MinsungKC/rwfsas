@@ -1,0 +1,10 @@
+__pycache__/
+*.pyc
+.env
+# runtime caches and model artifacts (regenerated or supplied separately)
+_cache/
+_frozen/
+*.pkl
+*.pt
+*.onnx
+*.log
