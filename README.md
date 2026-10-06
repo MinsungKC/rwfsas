@@ -39,3 +39,19 @@ Install with `pip install -r requirements.txt`.
 ## Results
 
 Testing results are located in v0.1 documentation.pdf
+
+## How to use
+
+Install and run 
+'git clone https://github.com/MinsungKC/rwfsas
+cd rwfsas
+pip install -r requirements.txt'
+
+Pyton 3, rasterio, and netCDF4 are required, so if 'pip' failes, try 'conda install ratsterio netcdf4' 
+
+Set NASA FIRMS key
+# PowerShell
+'$env:FIRMS_MAP_KEY = "your_key"'
+# macOS/Linux
+'export FIRMS_MAP_KEY=your_key'
+
