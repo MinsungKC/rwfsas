@@ -49,3 +49,7 @@ Predictions are only made for active fires: a fire that is 90% or more contained
 ## Results
 
 Testing results are located in v0.1 documentation.pdf
+
+## Newer Versions
+
+Newer versions HAVE been developed (up to learned_field_v22) however these versions must undergo extensive training until put onto this repo!
