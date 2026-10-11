@@ -1,0 +1,23 @@
+{
+  "comment": "Curated, verified ignition coordinates - first source checked by resolve_ignition(). Keys are NAME_YEAR. Datetimes carry explicit UTC offsets (PST=-08:00 Nov-Mar, PDT=-07:00 Mar-Nov) - a naive datetime here gets misread as UTC and shifts the whole weather timeline 7-8 hours (the bug that made every sim start at night).",
+  "fires": {
+    "CAMP_2018":          { "name": "Camp Fire",       "year": 2018, "state": "CA", "lat": 39.7930, "lon": -121.4370, "datetime": "2018-11-08T06:15:00-08:00", "confidence": "verified" },
+    "DIXIE_2021":         { "name": "Dixie Fire",      "year": 2021, "state": "CA", "lat": 39.8713, "lon": -121.3894, "datetime": "2021-07-13T06:48:00-07:00", "confidence": "verified" },
+    "CALDOR_2021":        { "name": "Caldor Fire",     "year": 2021, "state": "CA", "lat": 38.5856, "lon": -120.5392, "datetime": "2021-08-14T14:00:00-07:00", "confidence": "verified" },
+    "BOOTLEG_2021":       { "name": "Bootleg Fire",    "year": 2021, "state": "OR", "lat": 42.6161, "lon": -121.4211, "datetime": "2021-07-06T13:42:00-07:00", "confidence": "verified" },
+    "THOMAS_2017":        { "name": "Thomas Fire",     "year": 2017, "state": "CA", "lat": 34.4253, "lon": -119.0548, "datetime": "2017-12-04T18:28:00-08:00", "confidence": "verified" },
+    "WOOLSEY_2018":       { "name": "Woolsey Fire",    "year": 2018, "state": "CA", "lat": 34.2635, "lon": -118.7010, "datetime": "2018-11-08T14:22:00-08:00", "confidence": "verified" },
+    "CREEK_2020":         { "name": "Creek Fire",      "year": 2020, "state": "CA", "lat": 37.1800, "lon": -119.2660, "datetime": "2020-09-04T20:00:00-07:00", "confidence": "verified" },
+    "CARR_2018":          { "name": "Carr Fire",       "year": 2018, "state": "CA", "lat": 40.6490, "lon": -122.5680, "datetime": "2018-07-23T16:00:00-07:00", "confidence": "verified" },
+    "KINCADE_2019":       { "name": "Kincade Fire",    "year": 2019, "state": "CA", "lat": 38.7925, "lon": -122.7801, "datetime": "2019-10-23T21:27:00-07:00", "confidence": "verified" },
+    "LNU LIGHTNING_2020": { "name": "LNU Lightning Complex", "year": 2020, "state": "CA", "lat": 38.4500, "lon": -122.1500, "datetime": "2020-08-17T23:00:00-07:00", "confidence": "verified" },
+    "GLASS_2020":         { "name": "Glass Fire",      "year": 2020, "state": "CA", "lat": 38.5600, "lon": -122.4700, "datetime": "2020-09-27T23:00:00-07:00", "confidence": "verified" },
+    "NORTH COMPLEX_2020": { "name": "North Complex",   "year": 2020, "state": "CA", "lat": 39.9000, "lon": -120.9500, "datetime": "2020-08-17T09:00:00-07:00", "confidence": "approx" },
+    "MONUMENT_2021":      { "name": "Monument Fire",   "year": 2021, "state": "CA", "lat": 40.7519, "lon": -123.3369, "datetime": "2021-07-30T12:00:00-07:00", "confidence": "verified" },
+    "MONUMENT_2022":      { "name": "Monument Fire",   "year": 2022, "state": "CA", "lat": 40.1700, "lon": -122.8700, "datetime": "2022-06-25T15:00:00-07:00", "confidence": "verified" },
+    "MCKINNEY_2022":      { "name": "McKinney Fire",   "year": 2022, "state": "CA", "lat": 41.8338, "lon": -122.8948, "datetime": "2022-07-29T14:15:00-07:00", "confidence": "verified" },
+    "PARK_2024":          { "name": "Park Fire",       "year": 2024, "state": "CA", "lat": 39.8133, "lon": -121.7439, "datetime": "2024-07-24T14:50:00-07:00", "confidence": "verified" },
+    "EATON_2025":         { "name": "Eaton Fire",      "year": 2025, "state": "CA", "lat": 34.1782, "lon": -118.0963, "datetime": "2025-01-07T18:18:00-08:00", "confidence": "verified" },
+    "PALISADES_2025":     { "name": "Palisades Fire",  "year": 2025, "state": "CA", "lat": 34.0736, "lon": -118.5424, "datetime": "2025-01-07T10:30:00-08:00", "confidence": "verified" }
+  }
+}
